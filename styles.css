@@ -47,7 +47,7 @@ a { color: inherit; }
 .hero__aside { margin-top: 18px; font-size: clamp(12px, 1.2vw, 15px); opacity: 0; transition: opacity 1s 2.1s; }
 .is-ready .hero__aside { opacity: 1; }
 .hero__hint { position: absolute; right: var(--pad); bottom: clamp(26px, 6vh, 70px); color: var(--dim); max-width: 20ch; text-align: right; line-height: 1.7; }
-@media (max-width: 760px) { .hero__hint { top: 64px; bottom: auto; } }
+@media (max-width: 760px) { .hero__hint { display: none; } .hero__border { max-width: calc(100% - 2 * var(--pad)); } }
 
 /* chapters */
 .chapter { padding-block: clamp(120px, 16vw, 230px) 0; }
