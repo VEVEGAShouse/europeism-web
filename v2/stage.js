@@ -119,10 +119,10 @@ function layout() {
   S = setup(cv);
   const portrait = S.W < S.H * .9;
   const box = portrait ? { x: 0, y: 64, w: S.W, h: S.H * .5 } : { x: S.W * .3, y: 70, w: S.W * .62, h: S.H - 110 };
-  const win = portrait ? [-13, 60, 71.5, 33] : [-26, 66, 72, 28];
+  const win = portrait ? [-13, 60, 71.5, 33] : [-18, 62, 72, 31];
   P = projector(S.W, S.H, box, win);
   dots = sampleDots(S.W, S.H, P, Math.max(4, Math.round(box.w / (portrait ? 95 : 150))));
-  dots.sz = Math.max(1.2, (dots.length ? (box.w / (portrait ? 95 : 150)) : 5) * .3);
+  dots.sz = Math.max(1.2, (box.w / (portrait ? 95 : 150)) * .27);
   D.forEach(d => {
     d.raw = d.p.map(poly => poly.map(([lon, lat]) => P(lon, lat)));
     d.sm = d.raw.map(r => smooth(r));
@@ -158,10 +158,10 @@ function frameStage() {
   c.fillStyle = PAPER;
   for (let i = 0; i < dots.length; i++) {
     const d = dots[i]; let tg;
-    if (seg === 0) tg = .3 + .14 * Math.sin(t * .8 + d.r * 12);
+    if (seg === 0) tg = .22 + .12 * Math.sin(t * .8 + d.r * 12);
     else if (seg === 1) tg = d.lon < L ? .62 : .1;
-    else if (seg <= 3) tg = .2;
-    else tg = D[a].in[i] ? .2 + .72 * drawP : .12;
+    else if (seg <= 3) tg = .14;
+    else tg = D[a].in[i] ? .14 + .78 * drawP : .08;
     d.al += (tg - d.al) * (reduce ? 1 : .1);
     c.globalAlpha = d.al;
     if (seg === 1 && Math.abs(d.lon - L) < .9) { c.fillStyle = RED; c.fillRect(d.x - dots.sz / 2, d.y - dots.sz / 2, dots.sz, dots.sz); c.fillStyle = PAPER; continue; }
