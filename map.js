@@ -61,10 +61,10 @@ function sample() {
     }
   }
   o.fill('evenodd');
-  const g = Math.max(5, Math.round(W / 210));
+  const g = Math.max(5, Math.round(W / 190));
   const px = o.getImageData(0, 0, W, H).data;
   for (let y = g / 2; y < H; y += g) for (let x = g / 2; x < W; x += g) {
-    if (px[((y | 0) * W + (x | 0)) * 4 + 3] > 100) dots.push({ x, y, lon: inv(x), r: Math.random() });
+    if (px[((y | 0) * W + (x | 0)) * 4 + 3] > 100) dots.push({ x, y, lon: inv(x), r: Math.random(), a: Math.max(0, Math.min(1, 1 - (y - H * 0.42) / (H * 0.38))) * 0.85 + 0.0 });
   }
   dots.g = g;
 }
@@ -79,14 +79,16 @@ function draw(now) {
   L += (target - L) * (reduce ? 1 : 0.07);
 
   ctx.clearRect(0, 0, W, H);
-  const sz = dots.g ? Math.max(1.4, dots.g * 0.32) : 2;
+  const sz = dots.g ? Math.max(1.3, dots.g * 0.27) : 2;
   for (const d of dots) {
     const delta = d.lon - L;
+    ctx.globalAlpha = d.a;
     if (Math.abs(delta) < 0.9) ctx.fillStyle = '#ff3d21';
     else if (delta < 0) ctx.fillStyle = d.r < 0.04 ? '#2a35ff' : '#ececea';
     else ctx.fillStyle = '#2c2c33';
     ctx.fillRect(d.x - sz / 2, d.y - sz / 2, sz, sz);
   }
+  ctx.globalAlpha = 1;
 
   // the line
   if (proj) {
@@ -95,9 +97,9 @@ function draw(now) {
     ctx.lineWidth = 1.5;
     ctx.setLineDash([3, 6]);
     ctx.beginPath();
-    for (let y = 92; y < H; y += 8) {
+    for (let y = 150; y < H * 0.9; y += 8) {
       const wob = Math.sin(y * 0.03 + t * 1.6) * 3;
-      y === 92 ? ctx.moveTo(x + wob, y) : ctx.lineTo(x + wob, y);
+      y === 150 ? ctx.moveTo(x + wob, y) : ctx.lineTo(x + wob, y);
     }
     ctx.stroke();
     ctx.setLineDash([]);
