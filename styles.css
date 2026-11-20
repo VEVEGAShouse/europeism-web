@@ -148,6 +148,11 @@ a { color: inherit; }
   .ring { grid-column: 1; grid-row: 2; width: min(62vw, 30svh); }
   .th__list { grid-row: 3; }
   .th__t { font-size: 27px; }
+  .th { top: 18px; transform: translateY(18px); }
+  .th.on { transform: none; }
+  .th.gone { transform: translateY(-18px); }
+  .theses__f { display: none; }
+  .th__list { min-height: 42svh; }
   .d19__map { height: 62svh; }
   .sent { grid-template-columns: 1fr; gap: 10px; }
   .sent button { justify-self: start; }
