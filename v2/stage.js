@@ -53,6 +53,7 @@ function sampleDots(W, H, proj, g) {
   for (const f of land.features) {
     const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
     for (const poly of polys) for (const ring of poly) {
+      if (ring.some(([lon, lat]) => lat < -55)) continue; // leave Antarctica out of this story
       let prev = null;
       ring.forEach(([lon, lat], i) => {
         const [x, y] = proj(lon, lat);
@@ -62,7 +63,7 @@ function sampleDots(W, H, proj, g) {
       o.closePath();
     }
   }
-  o.fill('evenodd');
+  o.fill('nonzero');
   const px = o.getImageData(0, 0, W, H).data;
   for (let y = g / 2; y < H; y += g) for (let x = g / 2; x < W; x += g)
     if (px[((y | 0) * W + (x | 0)) * 4 + 3] > 100) dots.push({ x, y, lon: proj.inv(x), r: Math.random(), al: 0 });
@@ -247,7 +248,7 @@ render();
 /* ---------- reveals, observers, loop ---------- */
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
 document.querySelectorAll('.rv').forEach(n => io.observe(n));
-new IntersectionObserver(es => { stageOn = es[0].isIntersecting; }).observe(stage);
+new IntersectionObserver(es => { stageOn = es[0].isIntersecting; if (!stageOn) barMid.textContent = 'A palimpsest in 19 drafts'; }).observe(stage);
 new IntersectionObserver(es => { padOn = es[0].isIntersecting; }).observe(pad);
 
 let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { layout(); layoutPad(); }, 160); });
