@@ -245,6 +245,46 @@ document.getElementById('sent').addEventListener('submit', e => {
 });
 render();
 
+/* ---------- IV. the word rewrites itself ---------- */
+const word = document.getElementById('word');
+function sticky(el) { const r = el.getBoundingClientRect(); return clamp(-r.top / (el.offsetHeight - innerHeight)); }
+function frameWord() {
+  const p = reduce ? 1 : sticky(word);
+  word.style.setProperty('--s', ease((p - .12) / .2).toFixed(3));
+  word.style.setProperty('--q', ease((p - .34) / .24).toFixed(3));
+  word.style.setProperty('--r', ease((p - .6) / .2).toFixed(3));
+}
+
+/* ---------- V. twelve theses, twelve stars ---------- */
+const NS = 'http://www.w3.org/2000/svg', starsG = document.getElementById('stars');
+const ROM = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+const starEls = ROM.map((_, i) => {
+  const a = -Math.PI / 2 + i * Math.PI / 6, cx = Math.cos(a) * 88, cy = Math.sin(a) * 88;
+  let d = ''; for (let j = 0; j < 10; j++) { const b = -Math.PI / 2 + j * Math.PI / 5, rr = j % 2 ? 2.4 : 6; d += (j ? 'L' : 'M') + (cx + Math.cos(b) * rr).toFixed(2) + ' ' + (cy + Math.sin(b) * rr).toFixed(2); }
+  const s = document.createElementNS(NS, 'path'); s.setAttribute('d', d + 'Z'); s.setAttribute('class', 'star'); starsG.appendChild(s); return s;
+});
+const theses = document.getElementById('theses'), ths = [...document.querySelectorAll('.th')], ringN = document.getElementById('ringN');
+const ringLine = document.getElementById('ringLine'), ringBox = document.querySelector('.ring'), thFoot = document.getElementById('thFoot');
+let thI = -1, thDone = null;
+function frameTheses() {
+  const p = reduce ? 1 : sticky(theses), i = Math.min(11, Math.floor(p * 12.4)), done = p > .985;
+  if (i !== thI) {
+    ths.forEach((t, j) => { t.classList.toggle('on', j === i); t.classList.toggle('gone', j < i); });
+    starEls.forEach((s, j) => { s.classList.toggle('lit', j < i); s.classList.toggle('now', j === i); });
+    ringN.textContent = ROM[i];
+    ringLine.style.strokeDashoffset = (553 * (1 - i / 12)).toFixed(1);
+    thI = i;
+  }
+  if (done !== thDone) {
+    ringBox.classList.toggle('done', done);
+    if (done) ringLine.style.strokeDashoffset = '0';
+    thFoot.textContent = done ? 'The circle is closed. The draft is not.' : 'Twelve stars, twelve theses. Scroll to close the circle.';
+    thDone = done;
+  }
+}
+addEventListener('scroll', () => { frameWord(); frameTheses(); }, { passive: true });
+frameWord(); frameTheses();
+
 /* ---------- reveals, observers, loop ---------- */
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
 document.querySelectorAll('.rv').forEach(n => io.observe(n));

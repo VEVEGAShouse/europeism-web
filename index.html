@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Europeism — Europe does not exist. Unless we keep thinking it.</title>
-  <meta name="description" content="Europeism is the practice of thinking Europe. For 2,500 years this corner of Eurasia has been rewritten in drafts. The European Union is the latest one. Not the last.">
+  <meta name="description" content="Europe has been written in eighteen drafts, from Mare Nostrum to the European Union. Europeism is the practice of thinking Europe. Draft 19 is unwritten.">
   <link rel="canonical" href="https://europeism.com/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://europeism.com/">
@@ -18,152 +18,149 @@
   <meta name="twitter:image" content="https://europeism.com/og.png">
   <meta name="author" content="Virginia E. Vegas">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://fronttier.io/#org", "name": "FRONTTIER AS", "legalName": "FRONTTIER AS", "url": "https://fronttier.io/", "email": "admin@fronttier.io", "logo": "https://fronttier.io/favicon.svg", "address": {"@type": "PostalAddress", "addressLocality": "Oslo", "addressCountry": "NO"}, "founder": {"@id": "https://vevegas.com/#virginia"}}, {"@type": "Person", "@id": "https://vevegas.com/#virginia", "name": "Virginia E. Vegas", "alternateName": "VE VEGAS", "url": "https://vevegas.com/", "worksFor": {"@id": "https://fronttier.io/#org"}}, {"@type": "WebSite", "@id": "https://europeism.com/#site", "url": "https://europeism.com/", "name": "Europeism", "inLanguage": "en", "description": "Europeism is the practice of thinking Europe: an open call to write the next draft of Europe.", "creator": {"@id": "https://vevegas.com/#virginia"}, "publisher": {"@id": "https://fronttier.io/#org"}}]}</script>
-  <meta name="theme-color" content="#08080a">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://fronttier.io/#org", "name": "FRONTTIER AS", "legalName": "FRONTTIER AS", "url": "https://fronttier.io/", "email": "admin@fronttier.io", "logo": "https://fronttier.io/favicon.svg", "address": {"@type": "PostalAddress", "addressLocality": "Oslo", "addressCountry": "NO"}, "founder": {"@id": "https://vevegas.com/#virginia"}}, {"@type": "Person", "@id": "https://vevegas.com/#virginia", "name": "Virginia E. Vegas", "alternateName": "VE VEGAS", "url": "https://vevegas.com/", "worksFor": {"@id": "https://fronttier.io/#org"}}, {"@type": "WebSite", "@id": "https://europeism.com/#site", "url": "https://europeism.com/", "name": "Europeism", "inLanguage": "en", "description": "Europeism is the practice of thinking Europe: an open call to write the next draft of Europe.", "creator": {"@id": "https://vevegas.com/#virginia"}, "publisher": {"@id": "https://fronttier.io/#org"}}]}</script>
+  <meta name="theme-color" content="#0a0a0b">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Martian+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4">
-  <script>document.documentElement.classList.add('js')</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400&family=Martian+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
-
   <header class="bar mono">
     <a href="#top" class="bar__brand">Europeism</a>
-    <span class="bar__ver">Draft v0.1 · <span id="clock">—</span></span>
-    <a href="#call" class="bar__cta">Write the next draft</a>
+    <span class="bar__mid" id="barMid">A palimpsest in 19 drafts</span>
+    <a href="#draft19" class="bar__cta">Draw draft 19</a>
   </header>
 
-  <!-- I. HERO ─────────────────────────────────────────── -->
-  <section class="hero" id="top" aria-labelledby="h1">
-    <canvas id="map" class="hero__map" aria-hidden="true"></canvas>
-    <p class="hero__border mono" id="borderLabel" aria-live="polite"></p>
-    <div class="hero__text">
-      <h1 id="h1" class="hero__title">
-        <span class="w">Europe</span>
-        <span class="w">does <span class="not">not<i class="strike" aria-hidden="true"></i></span></span>
-        <span class="w">exist.</span>
-      </h1>
-      <p class="hero__aside mono"><span class="red">—</span> unless we keep thinking it.</p>
-    </div>
-    <p class="hero__hint mono">Move across the map. You decide where Europe ends.</p>
-  </section>
+  <!-- the stage: one map, rewritten eighteen times -->
+  <section class="stage" id="top" aria-label="Europe, rewritten">
+    <div class="stage__pin">
+      <canvas id="map" aria-hidden="true"></canvas>
 
-  <!-- II. ONE LANDMASS ─────────────────────────────────── -->
-  <section class="chapter wrap" aria-labelledby="c1">
-    <p class="chapter__no mono reveal">I · Geography</p>
-    <h2 id="c1" class="chapter__title reveal">There is no continent called Europe.</h2>
-    <p class="chapter__body reveal">There is Eurasia. And at its western end, a peninsula that drew a line across the land and decided it was a world of its own. The line has moved for twenty-five centuries: the Phasis, the Don, the Urals, the Bosphorus. Nobody has ever agreed where it goes. That is the first clue that Europe was never found. It was <em>invented</em>.</p>
-  </section>
+      <ol class="ruler mono" id="ruler" aria-hidden="true"></ol>
 
-  <!-- MARQUEE ─────────────────────────────────────────── -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <span>Europa</span><span>Europe</span><span>Ευρώπη</span><span>Evropa</span><span>Eurooppa</span><span>Европа</span><span>Európa</span><span>Eiropa</span><span>Euroopa</span><span>Evrópa</span><span>Ewropa</span><span>An Eoraip</span><span>Ewrop</span><span>Avrupa</span><span>Eŭropo</span>
-      <span>Europa</span><span>Europe</span><span>Ευρώπη</span><span>Evropa</span><span>Eurooppa</span><span>Европа</span><span>Európa</span><span>Eiropa</span><span>Euroopa</span><span>Evrópa</span><span>Ewropa</span><span>An Eoraip</span><span>Ewrop</span><span>Avrupa</span><span>Eŭropo</span>
-    </div>
-  </div>
+      <div class="panels">
+        <article class="seg seg--hero on" data-seg="0">
+          <h1 class="hero__t">Europe does <span class="not">not<i></i></span><br>exist.</h1>
+          <p class="mono hero__a"><span class="red">—</span> unless we keep thinking it.</p>
+          <p class="mono hero__scroll">Scroll to read it rewritten ↓</p>
+        </article>
 
-  <!-- III. THE NAME ───────────────────────────────────── -->
-  <section class="chapter wrap" aria-labelledby="c2">
-    <p class="chapter__no mono reveal">II · The name</p>
-    <h2 id="c2" class="chapter__title reveal">Even its name is a rumour.</h2>
-    <p class="chapter__body reveal">Herodotus, the first historian, admitted that no one knew who had named it, and noted that Europa, the princess of the myth, came from Asia and never set foot in the land that carries her name. Twenty-five centuries later we still do not know where the word comes from. We only know that, every time it was spoken with enough conviction, something real began to happen.</p>
-  </section>
+        <article class="seg" data-seg="1">
+          <p class="mono seg__k">I · Geography</p>
+          <h2 class="seg__t">There is no continent called Europe.</h2>
+          <p class="seg__p">There is Eurasia. And at its western end, a peninsula that drew a line across the land and decided it was a world of its own. The line has moved for twenty-five centuries: the Phasis, the Don, the Urals, the Bosphorus. Europe was never found. It was <em>invented</em>.</p>
+        </article>
 
-  <!-- IV. THE DRAFTS ──────────────────────────────────── -->
-  <section class="drafts" aria-labelledby="c3">
-    <div class="wrap">
-      <p class="chapter__no mono reveal">III · The drafts</p>
-      <h2 id="c3" class="chapter__title reveal">Europe has been written in drafts.</h2>
-      <p class="chapter__body reveal">Emperors, popes, philosophers, prisoners and diplomats have each tried to write it. Some imposed their draft by force. Others proposed it with words. <span class="legend"><b class="tag tag--force">Force</b> drafts collapsed.</span> <span class="legend"><b class="tag tag--thought">Thought</b> drafts keep coming back.</span></p>
-    </div>
+        <article class="seg" data-seg="2">
+          <p class="mono seg__k">II · The name</p>
+          <h2 class="seg__t">Even its name is a rumour.</h2>
+          <p class="seg__p">Herodotus admitted that no one knew who had named it. Europa, the princess of the myth, came from Asia and never set foot in the land that carries her name. Every time the word was spoken with enough conviction, something real began to happen.</p>
+        </article>
 
-    <div class="deck" id="deck" tabindex="0" aria-label="Drafts of Europe, scroll horizontally">
-      <article class="draft" data-kind="force"><p class="mono draft__n">Draft 01</p><p class="draft__y">c. 30 BC</p><h3>Mare Nostrum</h3><p>Rome makes a sea, not a continent, the centre of the world.</p><p class="stamp">Collapsed · 476</p></article>
-      <article class="draft" data-kind="force"><p class="mono draft__n">Draft 02</p><p class="draft__y">800</p><h3>Pater Europae</h3><p>Charlemagne is crowned, and a court poet calls him the father of Europe.</p><p class="stamp">Divided · 843</p></article>
-      <article class="draft" data-kind="force"><p class="mono draft__n">Draft 03</p><p class="draft__y">962</p><h3>The Holy Roman Empire</h3><p>A sacred empire meant to rule Christendom. It lasts eight centuries, on paper.</p><p class="stamp">Dissolved · 1806</p></article>
-      <article class="draft" data-kind="thought"><p class="mono draft__n">Draft 04</p><p class="draft__y">1458</p><h3>De Europa</h3><p>After Constantinople falls, Pope Pius II writes of Europe and of Europeans as a people.</p><p class="stamp">Imagined</p></article>
-      <article class="draft" data-kind="force"><p class="mono draft__n">Draft 05</p><p class="draft__y">1519</p><h3>One faith, one monarch</h3><p>Charles V dreams of a universal monarchy over a Europe under one faith.</p><p class="stamp">Abdicated · 1556</p></article>
-      <article class="draft" data-kind="thought"><p class="mono draft__n">Draft 06</p><p class="draft__y">1638</p><h3>The Grand Design</h3><p>Sully proposes a confederation of fifteen European powers.</p><p class="stamp">Never tried</p></article>
-      <article class="draft" data-kind="thought"><p class="mono draft__n">Draft 07</p><p class="draft__y">1693</p><h3>A European parliament</h3><p>William Penn imagines a European assembly to keep the peace.</p><p class="stamp">Never tried</p></article>
-      <article class="draft" data-kind="thought"><p class="mono draft__n">Draft 08</p><p class="draft__y">1795</p><h3>Perpetual Peace</h3><p>Kant sketches a federation of free states.</p><p class="stamp">Unfinished</p></article>
-      <article class="draft" data-kind="force"><p class="mono draft__n">Draft 09</p><p class="draft__y">1806</p><h3>The Continental System</h3><p>Napoleon tries to make Europe one by conquest and blockade.</p><p class="stamp">Defeated · 1815</p></article>
-      <article class="draft" data-kind="thought"><p class="mono draft__n">Draft 10</p><p class="draft__y">1815</p><h3>The Concert of Europe</h3><p>The great powers agree to balance one another.</p><p class="stamp">Broken · 1914</p></article>
-      <article class="draft" data-kind="thought"><p class="mono draft__n">Draft 11</p><p class="draft__y">1849</p><h3>The United States of Europe</h3><p>Victor Hugo prophesies them before a peace congress in Paris.</p><p class="stamp">Prophecy</p></article>
-      <article class="draft" data-kind="thought"><p class="mono draft__n">Draft 12</p><p class="draft__y">1923</p><h3>Pan-Europa</h3><p>Coudenhove-Kalergi launches the first mass movement for a united Europe.</p><p class="stamp">Overtaken</p></article>
-      <article class="draft" data-kind="thought"><p class="mono draft__n">Draft 13</p><p class="draft__y">1929</p><h3>A federal union</h3><p>Aristide Briand proposes one to the League of Nations.</p><p class="stamp">Shelved</p></article>
-      <article class="draft" data-kind="force"><p class="mono draft__n">Draft 14</p><p class="draft__y">1940</p><h3>The New Order</h3><p>Europe by occupation and terror.</p><p class="stamp">Destroyed · 1945</p></article>
-      <article class="draft" data-kind="thought"><p class="mono draft__n">Draft 15</p><p class="draft__y">1941</p><h3>The Ventotene Manifesto</h3><p>Written by political prisoners on an island, for a free and united Europe.</p><p class="stamp">Inspired</p></article>
-      <article class="draft" data-kind="thought"><p class="mono draft__n">Draft 16</p><p class="draft__y">1950</p><h3>The Schuman Declaration</h3><p>Coal and steel pooled, so war becomes materially impossible.</p><p class="stamp">Signed</p></article>
-      <article class="draft" data-kind="thought"><p class="mono draft__n">Draft 17</p><p class="draft__y">1957</p><h3>The Treaties of Rome</h3><p>A common market of six.</p><p class="stamp">Absorbed</p></article>
-      <article class="draft draft--current" data-kind="thought"><p class="mono draft__n">Draft 18</p><p class="draft__y">1992</p><h3>The European Union</h3><p>Maastricht. The most ambitious draft so far.</p><p class="stamp stamp--live">In force · for now</p></article>
-      <article class="draft draft--blank"><p class="mono draft__n">Draft 19</p><p class="draft__y">20—</p><h3><span class="caret"></span></h3><p>Unwritten.</p><p class="stamp stamp--open">Open</p></article>
-    </div>
-    <p class="deck__hint wrap mono">Scroll →</p>
-  </section>
+        <article class="seg" data-seg="3">
+          <p class="mono seg__k">III · The drafts</p>
+          <h2 class="seg__t">Europe has been written in drafts.</h2>
+          <p class="seg__p">Emperors, popes, philosophers, prisoners and diplomats have each tried to write it. Watch the map. Drafts imposed by <b class="k k--force">force</b> break and fade. Drafts proposed in <b class="k k--thought">thought</b> stay on the page.</p>
+        </article>
 
-  <!-- V. DEFINITION ───────────────────────────────────── -->
-  <section class="define wrap" aria-labelledby="c4">
-    <p class="chapter__no mono reveal">IV · The word</p>
-    <div class="entry reveal">
-      <h2 id="c4" class="entry__word">Europeism</h2>
-      <p class="entry__pron mono">/ˌjʊə.rəˈpiː.ɪ.zəm/ · noun</p>
-      <ol class="entry__defs">
-        <li>The practice of thinking Europe: proposing, testing and rewriting ideas of what this corner of Eurasia could be together.</li>
-        <li>Not to be confused with <em>Europeanism</em>. Europeanism asks who Europeans are. Europeism asks what Europe could be.</li>
-      </ol>
-      <p class="entry__ety mono">Origin: from Spanish <i>europeísmo</i> and French <i>européisme</i>. Rare in English. We are borrowing it back.</p>
-    </div>
-  </section>
-
-  <!-- VI. THESES ──────────────────────────────────────── -->
-  <section class="theses" aria-labelledby="c5">
-    <div class="theses__inner wrap">
-      <div class="theses__aside">
-        <p class="chapter__no mono">V · Twelve theses</p>
-        <svg class="ring" viewBox="-100 -100 200 200" aria-hidden="true" id="ring"></svg>
+        <article class="seg draft" data-seg="4"><p class="mono seg__k">Draft 01 · c. 30 BC</p><h3 class="seg__t">Mare Nostrum</h3><p class="seg__p">Rome makes a sea, not a continent, the centre of the world.</p><p class="mono stamp">Force · Collapsed 476</p></article>
+        <article class="seg draft" data-seg="5"><p class="mono seg__k">Draft 02 · 800</p><h3 class="seg__t">Pater Europae</h3><p class="seg__p">Charlemagne is crowned, and a court poet calls him the father of Europe.</p><p class="mono stamp">Force · Divided 843</p></article>
+        <article class="seg draft" data-seg="6"><p class="mono seg__k">Draft 03 · 962</p><h3 class="seg__t">The Holy Roman Empire</h3><p class="seg__p">A sacred empire meant to rule Christendom. It lasts eight centuries, on paper.</p><p class="mono stamp">Force · Dissolved 1806</p></article>
+        <article class="seg draft" data-seg="7"><p class="mono seg__k">Draft 04 · 1458</p><h3 class="seg__t">De Europa</h3><p class="seg__p">After Constantinople falls, Pope Pius II writes of Europe, and of Europeans as a people.</p><p class="mono stamp stamp--t">Thought · Imagined</p></article>
+        <article class="seg draft" data-seg="8"><p class="mono seg__k">Draft 05 · 1519</p><h3 class="seg__t">One faith, one monarch</h3><p class="seg__p">Charles V dreams of a universal monarchy over a Europe under one faith.</p><p class="mono stamp">Force · Abdicated 1556</p></article>
+        <article class="seg draft" data-seg="9"><p class="mono seg__k">Draft 06 · 1638</p><h3 class="seg__t">The Grand Design</h3><p class="seg__p">Sully proposes a confederation of fifteen European powers.</p><p class="mono stamp stamp--t">Thought · Never tried</p></article>
+        <article class="seg draft" data-seg="10"><p class="mono seg__k">Draft 07 · 1693</p><h3 class="seg__t">A European parliament</h3><p class="seg__p">William Penn imagines a European assembly to keep the peace, with room for the Turks and the Muscovites.</p><p class="mono stamp stamp--t">Thought · Never tried</p></article>
+        <article class="seg draft" data-seg="11"><p class="mono seg__k">Draft 08 · 1795</p><h3 class="seg__t">Perpetual Peace</h3><p class="seg__p">Kant sketches a federation of free states. It has no border, only a principle.</p><p class="mono stamp stamp--t">Thought · Unfinished</p></article>
+        <article class="seg draft" data-seg="12"><p class="mono seg__k">Draft 09 · 1806</p><h3 class="seg__t">The Continental System</h3><p class="seg__p">Napoleon tries to make Europe one by conquest and blockade.</p><p class="mono stamp">Force · Defeated 1815</p></article>
+        <article class="seg draft" data-seg="13"><p class="mono seg__k">Draft 10 · 1815</p><h3 class="seg__t">The Concert of Europe</h3><p class="seg__p">The great powers agree to balance one another.</p><p class="mono stamp stamp--t">Thought · Broken 1914</p></article>
+        <article class="seg draft" data-seg="14"><p class="mono seg__k">Draft 11 · 1849</p><h3 class="seg__t">The United States of Europe</h3><p class="seg__p">Victor Hugo prophesies them before a peace congress in Paris.</p><p class="mono stamp stamp--t">Thought · Prophecy</p></article>
+        <article class="seg draft" data-seg="15"><p class="mono seg__k">Draft 12 · 1923</p><h3 class="seg__t">Pan-Europa</h3><p class="seg__p">Coudenhove-Kalergi launches the first mass movement for a united Europe.</p><p class="mono stamp stamp--t">Thought · Overtaken</p></article>
+        <article class="seg draft" data-seg="16"><p class="mono seg__k">Draft 13 · 1929</p><h3 class="seg__t">A federal union</h3><p class="seg__p">Aristide Briand proposes one to the League of Nations.</p><p class="mono stamp stamp--t">Thought · Shelved</p></article>
+        <article class="seg draft" data-seg="17"><p class="mono seg__k">Draft 14 · 1940</p><h3 class="seg__t">The New Order</h3><p class="seg__p">Europe by occupation and terror.</p><p class="mono stamp">Force · Destroyed 1945</p></article>
+        <article class="seg draft" data-seg="18"><p class="mono seg__k">Draft 15 · 1941</p><h3 class="seg__t">The Ventotene Manifesto</h3><p class="seg__p">Written by political prisoners on an island, for a free and united Europe.</p><p class="mono stamp stamp--t">Thought · Inspired</p></article>
+        <article class="seg draft" data-seg="19"><p class="mono seg__k">Draft 16 · 1950</p><h3 class="seg__t">The Schuman Declaration</h3><p class="seg__p">Coal and steel pooled, so that war becomes materially impossible.</p><p class="mono stamp stamp--t">Thought · Signed</p></article>
+        <article class="seg draft" data-seg="20"><p class="mono seg__k">Draft 17 · 1957</p><h3 class="seg__t">The Treaties of Rome</h3><p class="seg__p">A common market of six. On the map, it even crosses the sea.</p><p class="mono stamp stamp--t">Thought · Absorbed</p></article>
+        <article class="seg draft" data-seg="21"><p class="mono seg__k">Draft 18 · 1992</p><h3 class="seg__t">The European Union</h3><p class="seg__p">Maastricht. The most ambitious draft so far. Not the last.</p><p class="mono stamp stamp--live">In force · for now</p></article>
       </div>
-      <ol class="theses__list" id="c5">
-        <li class="thesis"><span class="mono">I</span>Europe is not a place. It is a sentence, rewritten for twenty-five centuries.</li>
-        <li class="thesis"><span class="mono">II</span>There is no European continent. There is a peninsula that decided to be one.</li>
-        <li class="thesis"><span class="mono">III</span>Every Europe began as a few words that enough people chose to believe.</li>
-        <li class="thesis"><span class="mono">IV</span>The Europes imposed by force have always collapsed. The Europes imagined in common keep returning.</li>
-        <li class="thesis"><span class="mono">V</span>The European Union is not the end of the idea of Europe. It is its latest draft.</li>
-        <li class="thesis"><span class="mono">VI</span>A draft that believes it is final stops being written, and starts being defended.</li>
-        <li class="thesis"><span class="mono">VII</span>To think Europe is to make it exist. To stop thinking it is to let it dissolve.</li>
-        <li class="thesis"><span class="mono">VIII</span>The question is not who Europeans are. It is what Europe could be.</li>
-        <li class="thesis"><span class="mono">IX</span>Borders, flags, anthems and treaties are tools of the imagination, not laws of nature.</li>
-        <li class="thesis"><span class="mono">X</span>Every generation inherits a Europe. Few dare to write their own.</li>
-        <li class="thesis"><span class="mono">XI</span>The next draft will not come from one emperor, one treaty or one capital.</li>
-        <li class="thesis"><span class="mono">XII</span>It will be written together, or it will not be European.</li>
+    </div>
+  </section>
+
+  <!-- IV. the word rewrites itself -->
+  <section class="word" id="word" aria-labelledby="w">
+    <div class="word__pin">
+      <p class="mono k">IV · The word</p>
+      <h2 class="word__w" id="w" aria-label="Europeism"><span aria-hidden="true">Europe<span class="an"><span>an</span><i></i></span>ism</span></h2>
+      <div class="word__q">
+        <p class="word__a"><span class="mono">Europeanism</span>asks who Europeans are.</p>
+        <p class="word__b"><span class="mono">Europeism</span>asks what Europe could be.</p>
+      </div>
+      <div class="word__def">
+        <p class="mono word__pron">/ˌjʊə.rəˈpiː.ɪ.zəm/ · noun</p>
+        <p class="word__d">The practice of thinking Europe: proposing, testing and rewriting ideas of what this corner of Eurasia could be together.</p>
+        <p class="mono word__ety">From Spanish <i>europeísmo</i> and French <i>européisme</i>. Rare in English. We are borrowing it back.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- V. twelve theses, twelve stars -->
+  <section class="theses" id="theses" aria-labelledby="th">
+    <div class="theses__pin">
+      <p class="mono k" id="th">V · Twelve theses</p>
+      <div class="ring">
+        <svg viewBox="-110 -110 220 220" id="ringSvg" aria-hidden="true">
+          <circle class="ring__track" r="88"></circle>
+          <circle class="ring__line" id="ringLine" r="88" transform="rotate(-90)"></circle>
+          <g id="stars"></g>
+        </svg>
+        <p class="ring__n" id="ringN">I</p>
+      </div>
+      <ol class="th__list" id="thList">
+          <li class="th on" data-i="0"><span class="mono th__n">Thesis I / XII</span><p class="th__t">Europe is not a place. It is <em>a sentence</em>, rewritten for twenty-five centuries.</p></li>
+          <li class="th" data-i="1"><span class="mono th__n">Thesis II / XII</span><p class="th__t">There is no European continent. There is a peninsula that <em>decided</em> to be one.</p></li>
+          <li class="th" data-i="2"><span class="mono th__n">Thesis III / XII</span><p class="th__t">Every Europe began as a few words that enough people <em>chose to believe</em>.</p></li>
+          <li class="th" data-i="3"><span class="mono th__n">Thesis IV / XII</span><p class="th__t">The Europes imposed by force have always collapsed. The Europes imagined in common <em>keep returning</em>.</p></li>
+          <li class="th" data-i="4"><span class="mono th__n">Thesis V / XII</span><p class="th__t">The European Union is not the end of the idea of Europe. It is its <em>latest draft</em>.</p></li>
+          <li class="th" data-i="5"><span class="mono th__n">Thesis VI / XII</span><p class="th__t">A draft that believes it is final stops being written, and starts <em>being defended</em>.</p></li>
+          <li class="th" data-i="6"><span class="mono th__n">Thesis VII / XII</span><p class="th__t">To think Europe is <em>to make it exist</em>. To stop thinking it is to let it dissolve.</p></li>
+          <li class="th" data-i="7"><span class="mono th__n">Thesis VIII / XII</span><p class="th__t">The question is not who Europeans are. It is <em>what Europe could be</em>.</p></li>
+          <li class="th" data-i="8"><span class="mono th__n">Thesis IX / XII</span><p class="th__t">Borders, flags, anthems and treaties are <em>tools of the imagination</em>, not laws of nature.</p></li>
+          <li class="th" data-i="9"><span class="mono th__n">Thesis X / XII</span><p class="th__t">Every generation inherits a Europe. Few dare <em>to write their own</em>.</p></li>
+          <li class="th" data-i="10"><span class="mono th__n">Thesis XI / XII</span><p class="th__t">The next draft will not come from <em>one emperor, one treaty or one capital</em>.</p></li>
+          <li class="th" data-i="11"><span class="mono th__n">Thesis XII / XII</span><p class="th__t">It will be written <em>together</em>, or it will not be European.</p></li>
       </ol>
+      <p class="mono theses__f" id="thFoot">Twelve stars, twelve theses. Scroll to close the circle.</p>
     </div>
   </section>
 
-  <!-- VII. CALL ───────────────────────────────────────── -->
-  <section class="call" id="call" aria-labelledby="c6">
-    <div class="wrap">
-      <p class="chapter__no mono reveal">VI · The call</p>
-      <h2 id="c6" class="call__title reveal">Draft 19<br>is unwritten.</h2>
-      <p class="call__body reveal">Europeism is an open invitation to rethink the idea of Europe: new forms of cooperation, belonging and self-government that do not exist yet. The format is still being imagined. That is the point.</p>
-      <form class="call__form reveal" id="draftForm" autocomplete="off">
-        <label class="mono" for="line">Europe is</label>
-        <input id="line" name="line" maxlength="120" placeholder="…finish the sentence">
-        <button type="submit" class="mono">Add to the draft →</button>
-      </form>
-      <ol class="call__lines mono" id="lines" aria-live="polite"></ol>
-      <p class="call__join reveal"><a href="mailto:admin@fronttier.io?subject=Europeism%20%E2%80%94%20I%20want%20to%20write%20the%20next%20draft" class="mono">Join the people writing it →</a></p>
+  <!-- draft 19: yours -->
+  <section class="d19" id="draft19" aria-labelledby="d19t">
+    <div class="d19__head">
+      <p class="mono k rv">VI · Draft 19 · 20—</p>
+      <h2 class="d19__t rv" id="d19t">Draft 19<br>is unwritten.</h2>
+      <p class="d19__p rv">Eighteen hands drew Europe before you. Draw where you think it begins and ends. Then finish the sentence.</p>
     </div>
+    <div class="d19__map">
+      <canvas id="pad" aria-label="Draw your Europe on the map"></canvas>
+      <p class="mono d19__hint" id="padHint">Draw with your finger or cursor</p>
+      <button type="button" class="mono d19__redo" id="padRedo" hidden>Redraw ↺</button>
+    </div>
+    <form class="sent" id="sent" autocomplete="off">
+      <label class="mono sent__k" for="sentIn">Europe is</label>
+      <input id="sentIn" name="s" maxlength="90" placeholder="…finish the sentence">
+      <button type="submit" class="mono">Add to the draft →</button>
+    </form>
+    <ol class="lines mono" id="lines" aria-live="polite"></ol>
+    <a class="join" href="mailto:admin@fronttier.io?subject=Europeism%20%E2%80%94%20I%20want%20to%20write%20draft%2019"><span class="mono">Join the people writing it</span> admin@fronttier.io <i>→</i></a>
   </section>
 
-  <footer class="foot wrap mono">
+  <footer class="foot mono">
     <span>europeism.com</span>
     <span>Initiated by <a href="https://vevegas.com">VE VEGAS</a></span>
     <a href="https://fronttier.io">A FRONTTIER AS project ↗</a>
   </footer>
 
-  <script type="module" src="map.js?v=2"></script>
-  <script src="page.js?v=1" defer></script>
+  <script type="module" src="stage.js?v=5"></script>
 </body>
 </html>
