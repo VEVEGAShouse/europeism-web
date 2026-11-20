@@ -120,7 +120,7 @@ function layout() {
   S = setup(cv);
   const portrait = S.W < S.H * .9;
   const box = portrait ? { x: 0, y: 64, w: S.W, h: S.H * .5 } : { x: S.W * .3, y: 70, w: S.W * .62, h: S.H - 110 };
-  const win = portrait ? [-13, 60, 71.5, 33] : [-18, 62, 72, 31];
+  const win = portrait ? [-12, 64, 71.5, 33.5] : [-18, 62, 72, 31];
   P = projector(S.W, S.H, box, win);
   dots = sampleDots(S.W, S.H, P, Math.max(4, Math.round(box.w / (portrait ? 95 : 150))));
   dots.sz = Math.max(1.2, (box.w / (portrait ? 95 : 150)) * .27);
