@@ -175,12 +175,12 @@ function frameStage() {
     c.strokeStyle = RED; c.lineWidth = 1.2; c.setLineDash([3, 6]); c.beginPath();
     for (let y = y0; y < y1; y += 6) { const w = Math.sin(y * .03 + t * 1.6) * 2.5; y === y0 ? c.moveTo(x + w, y) : c.lineTo(x + w, y); }
     c.stroke(); c.setLineDash([]);
-    c.fillStyle = RED; c.font = '300 10px "Martian Mono", monospace';
+    c.fillStyle = RED; c.font = '500 11px "Geist Mono", monospace';
     const txt = STOPS[stopI][1].toUpperCase(), tw = c.measureText(txt).width;
     c.fillText(txt, Math.min(S.W - tw - 16, Math.max(16, x - tw / 2)), y0 - 12);
   }
   if (seg === 2) {
-    c.fillStyle = PAPER; c.font = '300 15px "Inter Tight", sans-serif'; c.textAlign = 'center';
+    c.fillStyle = PAPER; c.font = '600 16px "Geist", sans-serif'; c.textAlign = 'center';
     NAMES.forEach((n, i) => { c.globalAlpha = ease(local * 2.2 - i * .07) * .92; c.fillText(n[0], n.xy[0], n.xy[1]); });
     c.globalAlpha = 1; c.textAlign = 'left';
   }
@@ -215,7 +215,7 @@ function framePad() {
     c.fillStyle = RED; c.globalAlpha = .07; done.forEach(r => { c.beginPath(); r.forEach(([x, y], j) => j ? c.lineTo(x, y) : c.moveTo(x, y)); c.closePath(); c.fill(); }); c.globalAlpha = 1;
     done.forEach(r => stroke(c, r));
     const [lx, ly] = done[0].reduce((m, p) => p[1] < m[1] ? p : m, [0, 1e9]);
-    c.fillStyle = RED; c.font = '300 10px "Martian Mono", monospace'; c.fillText('DRAFT 19 · YOURS · 20—', lx + 10, ly - 10);
+    c.fillStyle = RED; c.font = '500 11px "Geist Mono", monospace'; c.fillText('DRAFT 19 · YOURS · 20—', lx + 10, ly - 10);
   } else if (line.length > 1) stroke(c, line, 1, false);
 }
 function pt(e) { const r = pad.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
@@ -258,13 +258,22 @@ function frameWord() {
 /* ---------- V. twelve theses, twelve stars ---------- */
 const NS = 'http://www.w3.org/2000/svg', starsG = document.getElementById('stars');
 const ROM = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+// each star is drawn with the same square dots as the map
+const starPts = (R, r) => Array.from({ length: 10 }, (_, j) => { const b = -Math.PI / 2 + j * Math.PI / 5, rr = j % 2 ? r : R; return [Math.cos(b) * rr, Math.sin(b) * rr]; });
+const STAR = starPts(10.5, 4.1), STEP = 1.45, DOT = .92, CELLS = [];
+for (let y = -11 + STEP / 2; y < 11; y += STEP) for (let x = -11 + STEP / 2; x < 11; x += STEP) if (inside(x, y, STAR)) CELLS.push([x, y]);
 const starEls = ROM.map((_, i) => {
-  const a = -Math.PI / 2 + i * Math.PI / 6, cx = Math.cos(a) * 88, cy = Math.sin(a) * 88;
-  let d = ''; for (let j = 0; j < 10; j++) { const b = -Math.PI / 2 + j * Math.PI / 5, rr = j % 2 ? 2.4 : 6; d += (j ? 'L' : 'M') + (cx + Math.cos(b) * rr).toFixed(2) + ' ' + (cy + Math.sin(b) * rr).toFixed(2); }
-  const s = document.createElementNS(NS, 'path'); s.setAttribute('d', d + 'Z'); s.setAttribute('class', 'star'); starsG.appendChild(s); return s;
+  const a = -Math.PI / 2 + i * Math.PI / 6, g = document.createElementNS(NS, 'g');
+  g.setAttribute('class', 'st'); g.setAttribute('transform', 'translate(' + (Math.cos(a) * 88).toFixed(2) + ' ' + (Math.sin(a) * 88).toFixed(2) + ')');
+  CELLS.forEach(([x, y]) => {
+    const r = document.createElementNS(NS, 'rect');
+    r.setAttribute('x', (x - DOT / 2).toFixed(2)); r.setAttribute('y', (y - DOT / 2).toFixed(2)); r.setAttribute('width', DOT); r.setAttribute('height', DOT);
+    r.style.setProperty('--d', (Math.random() * .55).toFixed(2) + 's'); g.appendChild(r);
+  });
+  starsG.appendChild(g); return g;
 });
 const theses = document.getElementById('theses'), ths = [...document.querySelectorAll('.th')], ringN = document.getElementById('ringN');
-const ringLine = document.getElementById('ringLine'), ringBox = document.querySelector('.ring'), thFoot = document.getElementById('thFoot');
+const ringBox = document.querySelector('.ring'), thFoot = document.getElementById('thFoot');
 let thI = -1, thDone = null;
 function frameTheses() {
   const p = reduce ? 1 : sticky(theses), i = Math.min(11, Math.floor(p * 12.4)), done = p > .985;
@@ -272,12 +281,10 @@ function frameTheses() {
     ths.forEach((t, j) => { t.classList.toggle('on', j === i); t.classList.toggle('gone', j < i); });
     starEls.forEach((s, j) => { s.classList.toggle('lit', j < i); s.classList.toggle('now', j === i); });
     ringN.textContent = ROM[i];
-    ringLine.style.strokeDashoffset = (553 * (1 - i / 12)).toFixed(1);
     thI = i;
   }
   if (done !== thDone) {
     ringBox.classList.toggle('done', done);
-    if (done) ringLine.style.strokeDashoffset = '0';
     thFoot.textContent = done ? 'The circle is closed. The draft is not.' : 'Twelve stars, twelve theses. Scroll to close the circle.';
     thDone = done;
   }
